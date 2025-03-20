@@ -1,6 +1,7 @@
 const Theme = {
     primaryShade: 5,
-    primaryColor: "indigo"
+    primaryColor: "indigo",
+    defaultRadius: "9"
 }
 
 export default Theme

@@ -1,5 +1,5 @@
 {
-  "name": "pagebuilder",
+  "name": "react-elementor",
   "version": "1.0.0",
   "private": true,
   "type": "module",
@@ -10,10 +10,18 @@
   },
   "dependencies": {
     "@craftjs/core": "^0.2.12",
+    "@hello-pangea/dnd": "^18.0.1",
     "@mantine/core": "^7.17.2",
     "@mantine/hooks": "^7.17.2",
+    "@mantine/tiptap": "^7.17.2",
     "@reduxjs/toolkit": "^2.6.1",
     "@tabler/icons-react": "^3.31.0",
+    "@tiptap/core": "^2.11.5",
+    "@tiptap/extension-text-align": "^2.11.5",
+    "@tiptap/extension-text-style": "^2.11.5",
+    "@tiptap/extension-underline": "^2.11.5",
+    "@tiptap/react": "^2.11.5",
+    "@tiptap/starter-kit": "^2.11.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-redux": "^9.2.0"

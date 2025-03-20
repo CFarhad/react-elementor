@@ -1,6 +1,7 @@
 import { Box, Button, Flex, Grid, SimpleGrid, Text } from "@mantine/core";
 import { useEditor } from "@craftjs/core";
 import "../../elementor-icons.css";
+import { EditorText } from "../../components/editor/text";
 
 
 
@@ -8,7 +9,7 @@ const elements = [
     {
       icon: "eicon-text",
       label: "Text",
-      element: <Button />,
+      element: <EditorText />,
     },
   ];
 

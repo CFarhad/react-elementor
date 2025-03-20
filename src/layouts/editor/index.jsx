@@ -13,32 +13,44 @@ import {
   Paper,
   Box,
   ThemeIcon,
+  useMantineColorScheme,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { useMediaQuery } from "@mantine/hooks";
-import { IconDashboard, IconLayoutGrid, IconTrash, IconWand } from "@tabler/icons-react";
+import {
+  IconDashboard,
+  IconLayoutGrid,
+  IconMoon,
+  IconMoonStars,
+  IconSun,
+  IconTrash,
+  IconWand,
+} from "@tabler/icons-react";
 import { Editor, Element, Frame, useEditor, useNode } from "@craftjs/core";
 import { EditorContainer } from "../../components/editor/container";
 import EditorPage from "../../Editor";
 import Save from "./save";
 import { useDispatch, useSelector } from "react-redux";
 import Components from "./components";
-
-
+import Settings from "./settings";
+import { EditorText } from "../../components/editor/text";
+import { setComponents } from "../../redux/editor";
 
 function EditorLayout() {
   const rtl = false;
   const [mobileOpened, { toggle: toggleMobile }] = useDisclosure();
   const [desktopOpened, { toggle: toggleDesktop }] = useDisclosure(true);
   const smallScreen = useMediaQuery("(max-width: 768px)");
-  const mode = useSelector(state => state.editor.mode);
+  const mode = useSelector((state) => state.editor.mode);
   const dispatch = useDispatch();
   const editorState = useSelector((state) => state.editor);
-  const [deleteFunc,setDeleted] = useState(null);
+  const [deleteFunc, setDeleted] = useState(null);
+  const {colorScheme,toggleColorScheme} = useMantineColorScheme();
+  const dark = colorScheme === 'dark';
 
   return (
     <>
-      <Editor enabled={false} resolver={{EditorContainer}}>
+      <Editor enabled={true} resolver={{ EditorContainer, EditorText }}>
         <AppShell
           header={{ height: 60 }}
           navbar={{
@@ -66,8 +78,13 @@ function EditorLayout() {
                   size="sm"
                 />
                 <Text>Page Editor</Text>
+                <ActionIcon variant="light" color="dark" size="lg" onClick={() => toggleColorScheme()}>
+                  {dark ? <IconSun size="1.1rem" /> : <IconMoonStars size="1.1rem" />}
+                </ActionIcon>
               </Group>
-              <Save />
+              <Group>
+                <Save />
+              </Group>
             </Group>
           </AppShell.Header>
 
@@ -75,21 +92,35 @@ function EditorLayout() {
           <AppShell.Navbar>
             <AppShell.Section grow component={ScrollArea}>
               <Group justify="space-between">
-                <ActionIcon color="gray" radius={0} size="xl" onClick={() => dispatch(setComponents())}>
+                <ActionIcon
+                  color=""
+                  radius={0}
+                  size="xl"
+                  onClick={() => dispatch(setComponents())}
+                >
                   <IconLayoutGrid />
                 </ActionIcon>
-                <Text >{editorState.title}</Text>
+                <Text>{editorState.title}</Text>
                 {deleteFunc && mode === "edit" ? (
-                  <ActionIcon color="red" radius={0} size="xl" onClick={deleteFunc}>
+                  <ActionIcon
+                    color="red"
+                    radius={0}
+                    size="xl"
+                    onClick={deleteFunc}
+                  >
                     <IconTrash />
                   </ActionIcon>
-                ) : <ThemeIcon color="gray" radius={0} size="xl"><IconWand /></ThemeIcon>}
+                ) : (
+                  <ThemeIcon color="" radius={0} size="xl">
+                    <IconWand />
+                  </ThemeIcon>
+                )}
               </Group>
               <Divider />
               <Box px="lg" mt="md">
-                    {mode === "components" && <Components />}
-                    {mode === "edit" && <Settings setDeleted={setDeleted} />}
-                </Box>
+                {mode === "components" && <Components />}
+                {mode === "edit" && <Settings setDeleted={setDeleted} />}
+              </Box>
             </AppShell.Section>
           </AppShell.Navbar>
 
