@@ -9,6 +9,7 @@ import {
   Text,
   Divider,
   FileInput,
+  Textarea,
 } from "@mantine/core";
 import { IconX } from "@tabler/icons-react";
 import {EditorText} from "../text";
@@ -16,6 +17,9 @@ import UnitInput from "../toolbar/unitInput";
 import EdgeSpacing from "../toolbar/edgeSpacing";
 import Repeater from "../repeater";
 import TextEditor from "../../textEditor"
+import CodeEditor from "../../codeEditor";
+import SwitchHandler from "./switch";
+import IconSelector from "../../iconSelector";
 
 function FieldRenderer({ type, value, label, onChange, ...props }) {
   const handleChange = (newValue) => {
@@ -30,11 +34,23 @@ function FieldRenderer({ type, value, label, onChange, ...props }) {
         <TextInput
           {...props}
           size="xs"
-          variant="filled"
           label={label}
           value={value || ""}
           onChange={(e) => handleChange(e.target.value)}
         />
+      );
+    case "textarea":
+      return (
+        <Textarea
+          {...props}
+          size="xs"
+          label={label}
+          resize="vertical"
+          autosize
+          minRows={4}
+          maxRows={6}
+          onChange={(e) => handleChange(e.target.value)}
+        >{value || ""}</Textarea>
       );
     case "number":
       return (
@@ -42,8 +58,16 @@ function FieldRenderer({ type, value, label, onChange, ...props }) {
           {...props}
           size="xs"
           label={label}
-          variant="filled"
           value={value || ""}
+          onChange={handleChange}
+        />
+      );
+    case "switch":
+      return (
+        <SwitchHandler
+          {...props}
+          label={label}
+          value={value || false}
           onChange={handleChange}
         />
       );
@@ -73,7 +97,7 @@ function FieldRenderer({ type, value, label, onChange, ...props }) {
         <UnitInput
           {...props}
           label={label}
-          value={value || ""}
+          number={value || ""}
           onChange={handleChange}
         />
       );
@@ -90,6 +114,10 @@ function FieldRenderer({ type, value, label, onChange, ...props }) {
     case "wysiwyg":
       return (
         <TextEditor {...props} value={value || ""} onChange={handleChange} />
+      );
+    case "code":
+      return (
+        <CodeEditor {...props} value={value || ""} onChange={handleChange} />
       );
     case "segmented":
       return (
@@ -123,6 +151,15 @@ function FieldRenderer({ type, value, label, onChange, ...props }) {
           label={label}
           onChange={handleChange}
           fields={props.fields}
+        />
+      );
+    case "icon":
+      return (
+        <IconSelector
+          {...props}
+          label={label}
+          onChange={handleChange}
+          value={value}
         />
       );
     default:

@@ -35,6 +35,15 @@ import Components from "./components";
 import Settings from "./settings";
 import { EditorText } from "../../components/editor/text";
 import { setComponents } from "../../redux/editor";
+import { EditorHeading } from "../../components/editor/heading";
+import { EditorButton } from "../../components/editor/button";
+import { EditorDivider } from "../../components/editor/divider";
+import { EditorSpacer } from "../../components/editor/spacer";
+import { EditorHtml } from "../../components/editor/html";
+import { EditorAlert } from "../../components/editor/alert";
+import { EditorRating } from "../../components/editor/rating";
+import { EditorProgress } from "../../components/editor/progress";
+import { EditorIcon } from "../../components/editor/icon";
 
 function EditorLayout() {
   const rtl = false;
@@ -45,12 +54,27 @@ function EditorLayout() {
   const dispatch = useDispatch();
   const editorState = useSelector((state) => state.editor);
   const [deleteFunc, setDeleted] = useState(null);
-  const {colorScheme,toggleColorScheme} = useMantineColorScheme();
-  const dark = colorScheme === 'dark';
+  const { colorScheme, toggleColorScheme } = useMantineColorScheme();
+  const dark = colorScheme === "dark";
 
   return (
     <>
-      <Editor enabled={true} resolver={{ EditorContainer, EditorText }}>
+      <Editor
+        enabled={true}
+        resolver={{
+          EditorContainer,
+          EditorText,
+          EditorHeading,
+          EditorButton,
+          EditorDivider,
+          EditorSpacer,
+          EditorHtml,
+          EditorAlert,
+          EditorRating,
+          EditorProgress,
+          EditorIcon
+        }}
+      >
         <AppShell
           header={{ height: 60 }}
           navbar={{
@@ -78,8 +102,17 @@ function EditorLayout() {
                   size="sm"
                 />
                 <Text>Page Editor</Text>
-                <ActionIcon variant="light" color="dark" size="lg" onClick={() => toggleColorScheme()}>
-                  {dark ? <IconSun size="1.1rem" /> : <IconMoonStars size="1.1rem" />}
+                <ActionIcon
+                  variant="light"
+                  color="dark"
+                  size="lg"
+                  onClick={() => toggleColorScheme()}
+                >
+                  {dark ? (
+                    <IconSun size="1.1rem" />
+                  ) : (
+                    <IconMoonStars size="1.1rem" />
+                  )}
                 </ActionIcon>
               </Group>
               <Group>

@@ -3,6 +3,8 @@ import { useEditor } from '@craftjs/core';
 import { Box, Divider, Space, Tabs, TextInput } from '@mantine/core';
 import { useDispatch } from 'react-redux';
 import { setComponents } from '../../redux/editor';
+import CodeEditor from '../../components/codeEditor';
+import IconSelector from '../../components/iconSelector';
 
 function Settings({ setDeleted }) {
   const dispatch = useDispatch();

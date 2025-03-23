@@ -8,13 +8,13 @@ import {
 } from "@craftjs/core";
 import { EditorContainer } from "./components/editor/container";
 import { EditorText } from "./components/editor/text";
+import { EditorHeading } from "./components/editor/heading";
 
 function EditorPage() {
   return (
     <Frame>
       <Element is={EditorContainer} canvas data-cy="root-container">
-        <EditorText text="Hello" />
-        <EditorText text="Hello" />
+          <EditorHeading text="Hello guys" />
       </Element>
     </Frame>
   );

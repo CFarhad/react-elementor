@@ -38,7 +38,7 @@ function TextSettings() {
           { label: "section", value: 'section' },
           { label: "main", value: 'main' },
         ]}
-        defaultValue="500"
+        defaultValue="div"
       />
     </>
   );

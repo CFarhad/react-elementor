@@ -3,7 +3,8 @@ import React, { useEffect, useState } from "react";
 
 function UnitInput({label,number,unit,onChange}) {
   const [xunit, setUnit] = useState(unit || 'px');
-  const [value,setValue] = useState(number);
+  // remove everything following with number
+  const [value,setValue] = useState(number.replace(/[^0-9]/g, ''));
 
   useEffect(() => {
     onChange(`${value}${xunit}`);
@@ -12,9 +13,8 @@ function UnitInput({label,number,unit,onChange}) {
     <>
       <Text size="xs" mb="xs">{label}</Text>
       <Flex align="end" gap="xs">
-        <NumberInput value={value} onChange={(val) => setValue(val)} w="100%" variant="filled" size="xs" hideControls={true} />
+        <NumberInput value={value} onChange={(val) => setValue(val)} w="100%" size="xs" hideControls={true} />
         <Select
-          variant="filled"
           w="100px"
           defaultValue={xunit}
           value={xunit}

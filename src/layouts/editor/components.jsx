@@ -2,14 +2,83 @@ import { Box, Button, Flex, Grid, SimpleGrid, Text } from "@mantine/core";
 import { useEditor } from "@craftjs/core";
 import "../../elementor-icons.css";
 import { EditorText } from "../../components/editor/text";
+import { EditorHeading } from "../../components/editor/heading";
+import { EditorButton } from "../../components/editor/button";
+import { EditorDivider } from "../../components/editor/divider";
+import { EditorSpacer } from "../../components/editor/spacer";
+import { EditorHtml } from "../../components/editor/html";
+import { EditorAlert } from "../../components/editor/alert";
+import { EditorRating } from "../../components/editor/rating";
+import { EditorProgress } from "../../components/editor/progress";
+import { EditorIcon } from "../../components/editor/icon";
 
 
 
 const elements = [
     {
+      icon: "eicon-t-letter",
+      label: "Heading",
+      element: <EditorHeading />,
+    },
+    {
+      icon: "eicon-image",
+      label: "Image",
+      element: <Box />,
+    },
+    {
       icon: "eicon-text",
-      label: "Text",
+      label: "Text Editor",
       element: <EditorText />,
+    },
+    {
+      icon: "eicon-youtube",
+      label: "Video",
+      element: <Box />,
+    },
+    {
+      icon: "eicon-button",
+      label: "Button",
+      element: <EditorButton />,
+    },
+    {
+      icon: "eicon-divider",
+      label: "Divider",
+      element: <EditorDivider />,
+    },
+    {
+      icon: "eicon-spacer",
+      label: "Spacer",
+      element: <EditorSpacer />,
+    },
+    {
+      icon: "eicon-favorite",
+      label: "Icon",
+      element: <EditorIcon />,
+    },
+    {
+      icon: "eicon-code",
+      label: "HTML",
+      element: <EditorHtml />,
+    },
+    {
+      icon: "eicon-alert",
+      label: "Alert",
+      element: <EditorAlert />,
+    },
+    {
+      icon: "eicon-rating",
+      label: "Rating",
+      element: <EditorRating />,
+    },
+    {
+      icon: "eicon-skill-bar",
+      label: "Porgress Bar",
+      element: <EditorProgress />,
+    },
+    {
+      icon: "eicon-bullet-list",
+      label: "Icon List",
+      element: <Box />,
     },
   ];
 
