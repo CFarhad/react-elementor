@@ -44,6 +44,8 @@ import { EditorAlert } from "../../components/editor/alert";
 import { EditorRating } from "../../components/editor/rating";
 import { EditorProgress } from "../../components/editor/progress";
 import { EditorIcon } from "../../components/editor/icon";
+import IconListSettings from "../../components/editor/iconList/settings";
+import { EditorIconList } from "../../components/editor/iconList";
 
 function EditorLayout() {
   const rtl = false;
@@ -72,7 +74,8 @@ function EditorLayout() {
           EditorAlert,
           EditorRating,
           EditorProgress,
-          EditorIcon
+          EditorIcon,
+          EditorIconList
         }}
       >
         <AppShell

@@ -5,8 +5,8 @@ import { IconTrash } from "@tabler/icons-react";
 import { shallowEqual } from "@mantine/hooks";
 import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 
-function Repeater({ onChange, label, fields, ...props }) {
-  const [items, setItems] = useState([]);
+function Repeater({ onChange, label, fields,value, ...props }) {
+  const [items, setItems] = useState(value);
 
   // Add a new item
   const handleAddItem = () => {
@@ -14,14 +14,20 @@ function Repeater({ onChange, label, fields, ...props }) {
       acc[field.name] = ""; // Initialize fields with empty strings
       return acc;
     }, {});
-    const sequenceNumber = items.length + 1; // Assign a unique sequence number
+  
     const updatedItems = [
-      ...items,
-      { id: `${Date.now()}`, sequenceNumber, ...newItem },
+      ...items.map((item, index) => ({
+        ...item,
+        id: item.id || `${Date.now()}-${index}`,
+        sequenceNumber: item.sequenceNumber ?? index + 1,
+      })),
+      { id: `${Date.now()}`, sequenceNumber: items.length + 1, ...newItem },
     ];
+    console.log(updatedItems)
     setItems(updatedItems);
     if (onChange) onChange(updatedItems);
   };
+  
 
   // Remove an item
   const handleRemoveItem = (index) => {
@@ -65,7 +71,7 @@ const handleFieldChange = (index, fieldName, value) => {
 
   return (
     <div {...props}>
-      <Text size="xs" mb="sm">
+      <Text size="xs" mb="sm" fw="500">
         {label}
       </Text>
 
@@ -139,7 +145,7 @@ const handleFieldChange = (index, fieldName, value) => {
       </DragDropContext>
 
       <Button size="xs" onClick={handleAddItem} mt="md">
-        افزودن
+        Add
       </Button>
     </div>
   );

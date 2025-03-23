@@ -18,7 +18,7 @@ function ToolbarItem({
     propValue,
   } = useNode((node) => ({ propValue: node.data.props[propKey] }));
 
-  const value = Array.isArray(propValue) ? propValue[index] : propValue;
+  const value = Array.isArray(propValue) ? propValue : propValue;
 
   const handleChange = (newValue) => {
     setProp((props) => {

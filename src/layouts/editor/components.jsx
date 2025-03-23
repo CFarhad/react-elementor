@@ -11,6 +11,8 @@ import { EditorAlert } from "../../components/editor/alert";
 import { EditorRating } from "../../components/editor/rating";
 import { EditorProgress } from "../../components/editor/progress";
 import { EditorIcon } from "../../components/editor/icon";
+import IconListSettings from "../../components/editor/iconList/settings";
+import { EditorIconList } from "../../components/editor/iconList";
 
 
 
@@ -78,7 +80,7 @@ const elements = [
     {
       icon: "eicon-bullet-list",
       label: "Icon List",
-      element: <Box />,
+      element: <EditorIconList />,
     },
   ];
 

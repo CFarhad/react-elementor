@@ -151,6 +151,7 @@ function FieldRenderer({ type, value, label, onChange, ...props }) {
           label={label}
           onChange={handleChange}
           fields={props.fields}
+          value={value}
         />
       );
     case "icon":
