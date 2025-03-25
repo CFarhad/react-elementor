@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import FieldRenderer from "../toolbar/fieldRenderer";
 import { Accordion, Button, Text } from "@mantine/core";
 import { IconTrash } from "@tabler/icons-react";
@@ -23,7 +23,6 @@ function Repeater({ onChange, label, fields,value, ...props }) {
       })),
       { id: `${Date.now()}`, sequenceNumber: items.length + 1, ...newItem },
     ];
-    console.log(updatedItems)
     setItems(updatedItems);
     if (onChange) onChange(updatedItems);
   };
@@ -69,6 +68,17 @@ const handleFieldChange = (index, fieldName, value) => {
     if (onChange) onChange(updatedItems);
   };
 
+  useEffect(() => {
+    // for first render add id or sequenceNumber to each item if they dont have
+    const updatedItems = items.map((item, index) => ({
+      ...item,
+      id: item.id || `${Date.now()}-${index}`,
+      sequenceNumber: item.sequenceNumber ?? index + 1,
+    }));
+    setItems(updatedItems);
+    if (onChange) onChange(updatedItems);
+  },[])
+
   return (
     <div {...props}>
       <Text size="xs" mb="sm" fw="500">
@@ -110,19 +120,23 @@ const handleFieldChange = (index, fieldName, value) => {
                             </Accordion.Control>
                           </div>
                           <Accordion.Panel>
-                            {fields.map((field, fieldIndex) => (
-                              <div
-                                key={fieldIndex}
-                                style={{ marginBottom: "10px" }}
-                              >
-                                <FieldRenderer
-                                  {...field}
-                                  value={item[field.name]}
-                                  onChange={(value) => handleFieldChange(index, field.name, value)
-                                  }
-                                />
-                              </div>
-                            ))}
+                            {fields.map((field, fieldIndex) => {
+                              const value = Array.isArray(field) ? field : field;
+                              console.log(item[field.name])
+                              return (
+                                <div
+                                  key={fieldIndex}
+                                  style={{ marginBottom: "10px" }}
+                                >
+                                  <FieldRenderer
+                                    {...field}
+                                    value={item[field.name]}
+                                    onChange={(value) => handleFieldChange(index, field.name, value)
+                                    }
+                                  />
+                                </div>
+                              )
+                            })}
                             <Button
                               size="xs"
                               h={35}

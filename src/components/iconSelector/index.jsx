@@ -100,6 +100,7 @@ const IconSelector = ({value,onChange,label}) => {
 
 // component ShowIcon and give string of icon name and it must show the icon
 export const ShowIcon = ({icon,iconsize})=>{
+  if(!icon) return null;
   const Icon = Icons[icon];
   return createElement(Icon, { width: iconsize, height: iconsize });
 }

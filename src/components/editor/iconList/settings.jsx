@@ -13,9 +13,15 @@ function IconListSettings() {
       type: "icon",
       label: "Icon",
     },
+    {
+      name: "color",
+      type: "color",
+      label: "Background Color",
+    },
   ];
   return (
     <>
+      <ToolbarItem type="unit" label="Space Between" propKey="space" unit="px" />
       <ToolbarItem
         type="repeater"
         propKey="items"

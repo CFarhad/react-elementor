@@ -20,6 +20,7 @@ import TextEditor from "../../textEditor"
 import CodeEditor from "../../codeEditor";
 import SwitchHandler from "./switch";
 import IconSelector from "../../iconSelector";
+import UploadFile from "../../uploadFile";
 
 function FieldRenderer({ type, value, label, onChange, ...props }) {
   const handleChange = (newValue) => {
@@ -157,6 +158,15 @@ function FieldRenderer({ type, value, label, onChange, ...props }) {
     case "icon":
       return (
         <IconSelector
+          {...props}
+          label={label}
+          onChange={handleChange}
+          value={value}
+        />
+      );
+    case "image":
+      return (
+        <UploadFile
           {...props}
           label={label}
           onChange={handleChange}

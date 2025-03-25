@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { setComponents } from '../../redux/editor';
 import CodeEditor from '../../components/codeEditor';
 import IconSelector from '../../components/iconSelector';
+import UploadFile from '../../components/uploadFile';
 
 function Settings({ setDeleted }) {
   const dispatch = useDispatch();

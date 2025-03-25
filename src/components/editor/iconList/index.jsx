@@ -15,7 +15,7 @@ import { setEdit } from "../../../redux/editor";
 import { ShowIcon } from "../../iconSelector";
 import IconListSettings from "./settings";
 
-export const EditorIconList = ({ items, ...props }) => {
+export const EditorIconList = ({ items,space, ...props }) => {
   const {
     connectors: { connect, drag },
     selected,
@@ -33,12 +33,12 @@ export const EditorIconList = ({ items, ...props }) => {
   };
 
   return (
-    <List {...props} ref={(ref) => connect(drag(ref))} onClick={click}>
+    <List {...props} ref={(ref) => connect(drag(ref))} onClick={click} spacing={space}>
       {items.map((item, i) => {
         return (
           <List.Item
             icon={
-              <ThemeIcon radius="xl">
+              <ThemeIcon radius="xl" bg={item.color}>
                 <ShowIcon icon={item.icon} iconsize="16" />
               </ThemeIcon>
             }
@@ -54,10 +54,12 @@ export const EditorIconList = ({ items, ...props }) => {
 EditorIconList.craft = {
   displayName: "Icon",
   props: {
+    space: "10px",
     items: [
       {
         text: "Default Icon",
         icon: "IconPhoto",
+        color: "#ff0000"
       },
     ],
   },

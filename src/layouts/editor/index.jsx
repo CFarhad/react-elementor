@@ -46,6 +46,8 @@ import { EditorProgress } from "../../components/editor/progress";
 import { EditorIcon } from "../../components/editor/icon";
 import IconListSettings from "../../components/editor/iconList/settings";
 import { EditorIconList } from "../../components/editor/iconList";
+import { EditorImage } from "../../components/editor/image";
+import { EditorVideo } from "../../components/editor/video";
 
 function EditorLayout() {
   const rtl = false;
@@ -75,7 +77,9 @@ function EditorLayout() {
           EditorRating,
           EditorProgress,
           EditorIcon,
-          EditorIconList
+          EditorIconList,
+          EditorImage,
+          EditorVideo
         }}
       >
         <AppShell
@@ -153,7 +157,7 @@ function EditorLayout() {
                 )}
               </Group>
               <Divider />
-              <Box px="lg" mt="md">
+              <Box px={mode === "components" ? 0 : "md"} mt="md">
                 {mode === "components" && <Components />}
                 {mode === "edit" && <Settings setDeleted={setDeleted} />}
               </Box>
